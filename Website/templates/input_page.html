@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSF: Crop Recommendation</title>
+    <link
+        href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABASEv8QEhL/EBIS/xASEv8QEhL/EBIS/xASEv8QEhL/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBIS/xASEv8ECAb/BAoJ/wcFBv8FAgL/ycnJLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARUpI9nuPh//6+voEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEpRTvaoyLv/7/HvDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCR0P2rdDB/+7u7gwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKzEt9qPFt//x8fEMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkPCv5VaFv/ICAgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxL67RgEKA/8uSzz/XYR0/0FnWv8MJRX/ABEA/wULCP9iYGC5////AQAAAAAAAAAAAAAAAAAAAAAAAAAAanNt22echf+F5L7/dOa3/3nlt/9x5rf/e+e5/5ThwP+C4L3/qujO/wkbEf/6+voGAAAAAAAAAAAAAAAATk5OAkhmWf964LP/eei3/3Xltf9y5rv/eua4/6Xjw/83WEH/dOi3/3fps/+V47v/BQ8J/wAAAAAAAAAAAAAAAB8dGvaR5sT/d+i4/3Potf955Lb/gN66/7r53f8ABgH/mNe8/6T+2/945Ln/due3/6ffx/9xdnF4AAAAAAAAAAAACAH/d962/3rkuP915L3/nPDQ/7Hq1P8CEAj/Pj4+ASAvI/+s+eD/f9+9/3TnuP+A4rz/Cw0J/wAAAAAAAAAABBMI/5PZvP/B++P/1P7x/5yzqv8NEg7/////AwAAAABnamajeKOU/8b+6P984br/g+G7/wMCAf8AAAAAAAAAAFdXVwLVysklnJ2c5n16euqJiYkNAAAAAAAAAAAAAAAAAAAAAGt2b+dnhHj/rvPW/33kvf8ABQH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtrazUQAOBf9SfWr/BQsJ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeHh4AuLi4hMAAAAA+AcAAPwPAAD/PwAA/z8AAP8/AAD/PwAA/z8AAPAPAADABwAAwAMAAIADAACAgQAAgYEAAOfBAAD/8QAA//8AAA=="
+        rel="icon" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #4caf50, #8bc34a);
+            min-height: 100vh;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+
+        body::before {
+            content: "";
+            background-image: url('background_image.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            /* Add blur effect */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            /* Send it behind other content */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+            padding: 40px;
+            border-radius: 10px;
+            background: linear-gradient(to right, #9ccc65, #7cb342);
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+            /* Slightly increased box shadow on hover */
+        }
+
+        input[type="number"],
+        button {
+            margin: 10px 0;
+            padding: 15px;
+            width: 100%;
+            max-width: 300px;
+            background-color: white;
+            border: 1px solid #81C784;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        form>div>div:hover input[type="number"] {
+            border-color: darkgreen;
+            /* Change border color on hover */
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            /* Add box shadow on hover */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+            transform: scale(1.1);
+        }
+
+        form>div {
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        form>div>div {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        form>div>h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form>div>div>label {
+            font-weight: bold;
+            display: block;
+        }
+
+        form>div>div>input {
+            margin: 5px 0;
+            width: calc(100% - 10px);
+        }
+
+        form button {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="input-form">
+        <div>
+            <div>
+                <h2>Meteorological Parameters</h2>
+                <label for="Rainfall">Rainfall (mm)</label>
+                <input type="number" id="Rainfall" placeholder="Enter Rainfall (mm)" required>
+                <label for="Temperature">Temperature (°C)</label>
+                <input type="number" id="Temperature" placeholder="Enter Temperature (°C)" required>
+                <label for="Humidity">Humidity (%)</label>
+                <input type="number" id="Humidity" placeholder="Enter Humidity (%)" required>
+            </div>
+            <div>
+                <h2>Soil Health Parameters</h2>
+                <label for="Nitrogen">Nitrogen</label>
+                <input type="number" id="Nitrogen" placeholder="Enter Nitrogen value" required>
+                <label for="Phosphorus">Phosphorus</label>
+                <input type="number" id="Phosporus" placeholder="Enter Phosphorus value" required>
+                <label for="Potassium">Potassium</label>
+                <input type="number" id="Potassium" placeholder="Enter Potassium value" required>
+                <label for="Ph">pH</label>
+                <input type="number" id="Ph" placeholder="Enter pH value" required>
+            </div>
+        </div>
+        <button type="button" onclick="predict()">Predict</button>
+    </form>
+    <script src="script.js" defer></script>
+</body>
+
+</html>

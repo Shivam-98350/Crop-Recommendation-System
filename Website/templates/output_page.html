@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Crop</title>
+    <link
+        href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABASEv8QEhL/EBIS/xASEv8QEhL/EBIS/xASEv8QEhL/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBIS/xASEv8ECAb/BAoJ/wcFBv8FAgL/ycnJLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARUpI9nuPh//6+voEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEpRTvaoyLv/7/HvDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCR0P2rdDB/+7u7gwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKzEt9qPFt//x8fEMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkPCv5VaFv/ICAgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxL67RgEKA/8uSzz/XYR0/0FnWv8MJRX/ABEA/wULCP9iYGC5////AQAAAAAAAAAAAAAAAAAAAAAAAAAAanNt22echf+F5L7/dOa3/3nlt/9x5rf/e+e5/5ThwP+C4L3/qujO/wkbEf/6+voGAAAAAAAAAAAAAAAATk5OAkhmWf964LP/eei3/3Xltf9y5rv/eua4/6Xjw/83WEH/dOi3/3fps/+V47v/BQ8J/wAAAAAAAAAAAAAAAB8dGvaR5sT/d+i4/3Potf955Lb/gN66/7r53f8ABgH/mNe8/6T+2/945Ln/due3/6ffx/9xdnF4AAAAAAAAAAAACAH/d962/3rkuP915L3/nPDQ/7Hq1P8CEAj/Pj4+ASAvI/+s+eD/f9+9/3TnuP+A4rz/Cw0J/wAAAAAAAAAABBMI/5PZvP/B++P/1P7x/5yzqv8NEg7/////AwAAAABnamajeKOU/8b+6P984br/g+G7/wMCAf8AAAAAAAAAAFdXVwLVysklnJ2c5n16euqJiYkNAAAAAAAAAAAAAAAAAAAAAGt2b+dnhHj/rvPW/33kvf8ABQH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtrazUQAOBf9SfWr/BQsJ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeHh4AuLi4hMAAAAA+AcAAPwPAAD/PwAA/z8AAP8/AAD/PwAA/z8AAPAPAADABwAAwAMAAIADAACAgQAAgYEAAOfBAAD/8QAA//8AAA=="
+        rel="icon" type="image/x-icon">
+    <style>
+        body::before {
+            content: "";
+            background-image: url('background_image.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            /* Add blur effect */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            /* Send it behind other content */
+        }
+
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            text-align: center;
+            color: whitesmoke;
+            font-size: 45px;
+            position: relative;
+            /* Added relative positioning */
+        }
+
+        .Home-btn {
+            padding: 15px 40px;
+            font-size: 20px;
+            background: linear-gradient(to right, #8bc34a, #4caf50);
+            /* Gradient background */
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            position: fixed;
+            /* Changed to fixed positioning */
+            top: 30px;
+            /* Adjusted top position */
+            left: 30px;
+            /* Adjusted left position */
+            transition: 0.3s ease;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            /* Box shadow */
+        }
+
+        .Home-btn:hover {
+            background: linear-gradient(to right, #4caf50, #8bc34a);
+            /* Gradient background on hover */
+            transform: translateY(-2px);
+            /* Move up slightly on hover */
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            /* Enhance box shadow on hover */
+        }
+
+
+        #prediction {
+            font-size: 95px;
+            font-weight: bold;
+            margin: 20px;
+            padding: 10px;
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+            /* background: linear-gradient(to bottom, #C8E6C9, #43c84a);/ */
+            background-color: #0abe371b;
+            border-radius: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="content">
+            <h1>Recommended Crop :</h1>
+            <span id="prediction">
+                <!-- Use Jinja2 syntax to render prediction value -->
+                {{ prediction }}
+            </span>
+        </div>
+    </div>
+    <button class="Home-btn" onclick="redirectToHomepage()">Home</button>
+
+    <script src="script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const prediction = urlParams.get('prediction');
+            document.getElementById('prediction').textContent = prediction;
+        });
+    </script>
+</body>
+
+</html>
