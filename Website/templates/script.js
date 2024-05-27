@@ -18,7 +18,7 @@ function predict() {
 
     console.log(formData);
     // Send form data to the server for prediction
-    fetch('http://127.0.0.1:5800/predict', {
+    fetch('/predict', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
